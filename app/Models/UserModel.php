@@ -21,7 +21,7 @@ class UserModel extends Model
     {
     return $this->join('kelas', 'user.kelas_id', '=', 'kelas.id')
                 ->select('user.id', 'user.nama', 'user.nim', 'kelas.nama_kelas')
-                ->distinct() // cegah duplikat
+                ->distinct() 
                 ->get();
     }
 
