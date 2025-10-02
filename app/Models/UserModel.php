@@ -9,11 +9,20 @@ class UserModel extends Model
 {
     use HasFactory;
 
-    protected $table = 'users';
+    protected $table = 'user';
     protected $guarded = ['id'];
 
     public function kelas()
     {
         return $this->belongsTo(Kelas::class, 'kelas_id');
-    }   
+    }
+
+    public function getUser()
+    {
+    return $this->join('kelas', 'user.kelas_id', '=', 'kelas.id')
+                ->select('user.id', 'user.nama', 'user.nim', 'kelas.nama_kelas')
+                ->distinct() // cegah duplikat
+                ->get();
+    }
+
 }
