@@ -1,8 +1,10 @@
 <?php
 
-use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\UserController;
+Use App\Http\Controllers\ProfileController;
+Use App\Http\Controllers\UserController;
+use App\Http\Controllers\HomeController;
+use App\Http\Controllers\MataKuliahController;
 
 /*
 |--------------------------------------------------------------------------
@@ -14,16 +16,16 @@ use App\Http\Controllers\UserController;
 | be assigned to the "web" middleware group. Make something great!
 |
 */
-
 Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/profile/{nama}/{npm}/{kelas}', [ProfileController::class, 'profile']);
-
+Route::get('/profile/{nama}/{nim}/{kelas}', [ProfileController::class, 'profile']);
 Route::get('/user', [UserController::class, 'index'])->name('user.index');
 Route::get('/user/create', [UserController::class, 'create'])->name('user.create');
 Route::post('/user', [UserController::class, 'store'])->name('user.store');
 Route::delete('/user/{id}', [UserController::class, 'destroy'])->name('user.destroy');
-Route::get('/user/reset', [UserController::class, 'reset'])->name('user.reset');
 
+Route::get('/matakuliah', [MatakuliahController::class, 'index']);
+Route::get('/matakuliah/create', [MatakuliahController::class, 'create'])->name('matakuliah.create');
+Route::post('/matakuliah', [MatakuliahController::class, 'store'])->name('matakuliah.store');
