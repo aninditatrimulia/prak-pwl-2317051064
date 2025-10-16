@@ -24,6 +24,22 @@
             List User
           </a>
         </li>
+
+        <!-- Menu Daftar Mata Kuliah -->
+        <li class="nav-item">
+          <a class="nav-link {{ request()->is('matakuliah') ? 'active fw-bold text-success' : 'text-dark' }}" 
+             href="{{ url('/matakuliah') }}">
+            Daftar Mata Kuliah
+          </a>
+        </li>
+
+        <!-- Menu Tambah Mata Kuliah -->
+        <li class="nav-item">
+          <a class="nav-link {{ request()->is('matakuliah/create') ? 'active fw-bold text-success' : 'text-dark' }}" 
+             href="{{ url('/matakuliah/create') }}">
+            Tambah Mata Kuliah
+          </a>
+        </li>
       </ul>
     </div>
   </div>

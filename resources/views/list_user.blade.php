@@ -32,13 +32,22 @@
                                     </span>
                                 </td>
                                 <td>
+                                    <!-- Tombol Edit -->
+                                    <a href="{{ route('user.edit', $user->id) }}" 
+                                       class="btn btn-success btn-sm rounded-pill px-3"
+                                       style="background-color:#28a745; border:none;">
+                                        Edit
+                                    </a>
+
+                                    <!-- Tombol Hapus -->
                                     <form action="{{ route('user.destroy', $user->id) }}" 
                                           method="POST" 
                                           onsubmit="return confirm('Yakin ingin menghapus pengguna ini?')" 
                                           style="display:inline;">
                                         @csrf
                                         @method('DELETE')
-                                        <button type="submit" class="btn btn-outline-danger btn-sm rounded-pill">
+                                        <button type="submit" 
+                                                class="btn btn-outline-danger btn-sm rounded-pill px-3">
                                             Hapus
                                         </button>
                                     </form>
@@ -46,7 +55,9 @@
                             </tr>
                             @empty
                             <tr>
-                                <td colspan="5" class="text-muted fst-italic">⚠️ Belum ada data pengguna</td>
+                                <td colspan="5" class="text-muted fst-italic">
+                                    ⚠️ Belum ada data pengguna
+                                </td>
                             </tr>
                             @endforelse
                         </tbody>
@@ -56,4 +67,33 @@
         </div>
     </div>
 </div>
+
+<!-- Tambahkan SweetAlert2 -->
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+@if (session('success'))
+<script>
+    const successMessage = "{{ session('success') }}";
+    Swal.fire({
+        icon: 'success',
+        title: 'Berhasil!',
+        text: successMessage,
+        showConfirmButton: false,
+        timer: 2000
+    });
+</script>
+@endif
+
+@if (session('error'))
+<script>
+    const errorMessage = "{{ session('error') }}";
+    Swal.fire({
+        icon: 'error',
+        title: 'Terjadi Kesalahan!',
+        text: errorMessage,
+        showConfirmButton: true
+    });
+</script>
+@endif
 @endsection
+
